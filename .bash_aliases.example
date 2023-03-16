@@ -1,0 +1,6 @@
+alias dcbuild="docker compose build --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g)"
+alias dcbuildnc="docker compose build --no-cache --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g)"
+alias dcup="docker compose up -d"
+alias dcd="docker compose down --remove-orphans"
+alias dcrun="dcbuild && dcup"
+alias dev-config="cd ~/dev-config && sh update-setup.sh"
