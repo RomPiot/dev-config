@@ -1,6 +1,6 @@
 import os
 
-bash_aliases_file = os.path.expanduser('~/dev-config/.bash_aliases')
+bash_aliases_file = os.path.expanduser('~/dev-config/files/.bash_aliases')
 bashrc_file = os.path.expanduser('~/.bashrc')
 
 if os.path.isfile(bash_aliases_file):
