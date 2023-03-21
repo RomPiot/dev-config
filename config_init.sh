@@ -2,7 +2,24 @@ set -e # exit on error
 
 # Install all the necessary packages
 sudo apt update
-sudo apt install apt-transport-https ca-certificates curl software-properties-common git tilix tree vim btop -y
+sudo apt install apt-transport-https ca-certificates curl software-properties-common git git-flow tilix tree vim btop bat zsh -y
+
+python3 $HOME/dev-config/scripts/add_aliases.py
+source $HOME/.bash_aliases
+source $HOME/.zshrc
+
+# Add git user
+git_user_name=$(git config --global user.name)
+if [ -z "$git_user_name" ]; then
+  read -p "Enter your git user name: " git_user_name
+  git config --global user.name "$git_user_name"
+fi
+
+git_user_email=$(git config --global user.email)
+if [ -z "$git_user_email" ]; then
+  read -p "Enter your git user email: " git_user_email
+  git config --global user.email "$git_user_email"
+fi
 
 # Install docker
 if ! [ -x "$(command -v docker)" ]; then
@@ -39,9 +56,19 @@ if ! [ -x "$(command -v google-chrome)" ]; then
   rm chrome.deb
 fi
 
+# Install vscode
+if ! [ -x "$(command -v code)" ]; then
+  wget -O vscode.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+  sudo apt install ./vscode.deb
+  rm vscode.deb
+fi
+
 # Create projects folder
 if [ ! -d ~/projects ]; then
   mkdir ~/projects
 fi
 
-sh $HOME/dev-config/config-update.sh
+python3 $HOME/dev-config/scripts/generate_hosts.py
+sh $HOME/dev-config/scripts/git_aliases.sh
+sh $HOME/dev-config/scripts/zsh_config.sh
+

@@ -3,7 +3,7 @@ alias dcbuildnc="docker compose build --no-cache --build-arg USER_ID=$(id -u) --
 alias dcup="docker compose up -d"
 alias dcd="docker compose down --remove-orphans"
 alias dcrun="dcbuild && dcup"
-alias config-update="cd ~/dev-config && sh config-update.sh && cd ~"
+alias config-update="cd ~/dev-config && sh config_update.sh && cd ~"
 alias pbc=" php bin/console"
 alias pcc="php bin/console cache:clear"
 
