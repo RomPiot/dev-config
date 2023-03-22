@@ -1,9 +1,33 @@
 set -e # exit on error
 
 # Install all the necessary packages
-sudo apt update
-sudo apt install apt-transport-https ca-certificates curl software-properties-common git git-flow tilix tree vim btop bat zsh -y
+c
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common git git-flow tilix tree vim btop bat zsh -y
 
+# Install php
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+sudo apt-get install php5.6 -y
+sudo apt-get install php7.0 -y
+sudo apt-get install php7.1 -y
+sudo apt-get install php7.2 -y
+sudo apt-get install php7.3 -y
+sudo apt-get install php7.4 -y
+sudo apt-get install php8.0 -y
+sudo apt-get install php8.1 -y
+sudo apt-get install php8.2 -y
+
+# Install noden npm, nvm, yarn
+sudo apt-get install nodejs npm -y
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+source ~/.nvm/nvm.sh
+nvm install node
+npm install --global yarn
+
+# Install aliases
 python3 $HOME/dev-config/scripts/add_aliases.py
 source $HOME/.bash_aliases
 source $HOME/.zshrc

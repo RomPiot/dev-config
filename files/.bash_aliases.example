@@ -6,7 +6,25 @@ alias dcrun="dcbuild && dcup"
 alias config-update="cd ~/dev-config && sh config_update.sh && cd ~"
 alias pbc=" php bin/console"
 alias pcc="php bin/console cache:clear"
+alias bat="batcat"
+alias php56="sudo update-alternatives --set php /usr/bin/php5.6 && php -v"
+alias php70="sudo update-alternatives --set php /usr/bin/php7.0 && php -v"
+alias php71="sudo update-alternatives --set php /usr/bin/php7.1 && php -v"
+alias php72="sudo update-alternatives --set php /usr/bin/php7.2 && php -v"
+alias php73="sudo update-alternatives --set php /usr/bin/php7.3 && php -v"
+alias php74="sudo update-alternatives --set php /usr/bin/php7.4 && php -v"
+alias php80="sudo update-alternatives --set php /usr/bin/php8.0 && php -v"
+alias php81="sudo update-alternatives --set php /usr/bin/php8.1 && php -v"
+alias php82="sudo update-alternatives --set php /usr/bin/php8.2 && php -v"
+
 
 dcexec() {
     docker exec -it $1 bash
 }
+
+nv() {
+    nvm install $1 --reinstall-packages-from=node
+    nvm alias default $1
+    nvm use $1
+}
+
