@@ -1,4 +1,6 @@
 git config --global init.defaultBranch master
+git config --global core.autocrlf false
+git config --global core.eol lf
 git config --global alias.co checkout
 git config --global alias.br "co -b"
 git config --global alias.com commit

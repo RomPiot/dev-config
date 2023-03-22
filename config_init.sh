@@ -69,6 +69,6 @@ if [ ! -d ~/projects ]; then
 fi
 
 python3 $HOME/dev-config/scripts/generate_hosts.py
-sh $HOME/dev-config/scripts/git_aliases.sh
+sh $HOME/dev-config/scripts/git_config.sh
 sh $HOME/dev-config/scripts/zsh_config.sh
 
