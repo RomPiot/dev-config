@@ -17,13 +17,14 @@ sudo apt-get install php8.0 -y
 sudo apt-get install php8.1 -y
 sudo apt-get install php8.2 -y
 
-# Install noden npm, nvm, yarn
-sudo apt-get install nodejs npm -y
+# Install node, npm, nvm, yarn
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+source ~/.profile
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-source ~/.nvm/nvm.sh
 nvm install node
 npm install --global yarn
 
