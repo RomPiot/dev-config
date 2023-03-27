@@ -1,7 +1,7 @@
 # Install oh-my-zsh
 if [ ! -d ~/.oh-my-zsh ]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" -y
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k -y
+    sudo rm -rf ~/.oh-my-zsh/custom/themes/powerlevel10k
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 fi
 
 if [ ! -d ~/.fonts ]; then
@@ -21,6 +21,8 @@ fi
 
 sed -i 's/^ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc
 cp $HOME/dev-config/files/.p10k.zsh $HOME/.p10k.zsh
+source ~/.zshrc
+source ~/.p10k.zsh
 #p10k configure
 
 # TODO : configure phpstorm terminal with zsh && change console font with MesloLGS

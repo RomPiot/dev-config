@@ -8,7 +8,7 @@ This project is created in order to generate my custom aliases, and generate loc
 4. Execute this command to add init and updating the dev config
 
 ```
-cd ~/dev-config && sh update-setup.sh
+cd ~/dev-config && sh config_init.sh
 ```
 
 ## Update

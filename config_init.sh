@@ -1,7 +1,6 @@
 set -e # exit on error
 
 # Install all the necessary packages
-c
 sudo apt-get install apt-transport-https ca-certificates curl software-properties-common git git-flow tilix tree vim btop bat zsh -y
 
 # Install php
@@ -19,7 +18,7 @@ sudo apt-get install php8.2 -y
 
 # Install node, npm, nvm, yarn
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-source ~/.profile
+#source ~/.profile
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
@@ -27,11 +26,6 @@ export NVM_DIR="$HOME/.nvm"
 
 nvm install node
 npm install --global yarn
-
-# Install aliases
-python3 $HOME/dev-config/scripts/add_aliases.py
-source $HOME/.bash_aliases
-source $HOME/.zshrc
 
 # Add git user
 git_user_name=$(git config --global user.name)
@@ -94,6 +88,23 @@ if [ ! -d ~/projects ]; then
 fi
 
 python3 $HOME/dev-config/scripts/generate_hosts.py
+
+if [ ! -f $HOME/.bashrc ]; then
+    touch $HOME/.bashrc
+fi
+
+if [ ! -f $HOME/.zshrc ]; then
+    touch $HOME/.zshrc
+fi
+
 sh $HOME/dev-config/scripts/git_config.sh
 sh $HOME/dev-config/scripts/zsh_config.sh
+
+
+# Install aliases
+python3 $HOME/dev-config/scripts/add_aliases.py
+#source $HOME/.bash_aliases
+#source $HOME/.zshrc
+
+
 cp $HOME/dev-config/files/.editorconfig $HOME/.editorconfig
