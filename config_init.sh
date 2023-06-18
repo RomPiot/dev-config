@@ -2,7 +2,7 @@ set -e # exit on error
 
 sudo apt-get update
 # Install all the necessary packages
-sudo apt-get install apt-transport-https ca-certificates curl software-properties-common git git-flow tree vim btop bat zsh -y
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common git git-flow tree vim btop bat zsh make -y
 
 # Install php
 if ! grep -q "ondrej/php" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
