@@ -1,10 +1,14 @@
 set -e # exit on error
 
+sudo apt-get update
 # Install all the necessary packages
-sudo apt-get install apt-transport-https ca-certificates curl software-properties-common git git-flow tilix tree vim btop bat zsh -y
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common git git-flow tree vim btop bat zsh -y
 
 # Install php
-sudo add-apt-repository ppa:ondrej/php
+if ! grep -q "ondrej/php" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
+    sudo add-apt-repository ppa:ondrej/php
+fi
+
 sudo apt-get update
 sudo apt-get install php5.6 -y
 sudo apt-get install php7.0 -y
@@ -28,14 +32,12 @@ nvm install node
 npm install --global yarn
 
 # Add git user
-git_user_name=$(git config --global user.name)
-if [ -z "$git_user_name" ]; then
+if [ -z $(git config --global user.name) ]; then
     read -p "Enter your git user name: " git_user_name
     git config --global user.name "$git_user_name"
 fi
 
-git_user_email=$(git config --global user.email)
-if [ -z "$git_user_email" ]; then
+if [ -z $(git config --global user.email) ]; then
     read -p "Enter your git user email: " git_user_email
     git config --global user.email "$git_user_email"
 fi
@@ -59,29 +61,6 @@ if ! [ -x "$(command -v compose)" ]; then
     docker compose version
 fi
 
-# Install jetbrains toolbox
-if ! [ -x "$(command -v ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox)" ]; then
-    wget -O jetbrains-toolbox.tar.gz "https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.27.3.14493.tar.gz"
-    tar -xzf jetbrains-toolbox.tar.gz
-    cd jetbrains-toolbox-*/
-    ./jetbrains-toolbox
-    rm -rf jetbrains-toolbox-*/
-fi
-
-# Install Chrome
-if ! [ -x "$(command -v google-chrome)" ]; then
-    wget -O chrome.deb "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-    sudo apt install ./chrome.deb
-    rm chrome.deb
-fi
-
-# Install vscode
-if ! [ -x "$(command -v code)" ]; then
-    wget -O vscode.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
-    sudo apt install ./vscode.deb
-    rm vscode.deb
-fi
-
 # Create projects folder
 if [ ! -d ~/projects ]; then
     mkdir ~/projects
@@ -93,18 +72,16 @@ if [ ! -f $HOME/.bashrc ]; then
     touch $HOME/.bashrc
 fi
 
-if [ ! -f $HOME/.zshrc ]; then
-    touch $HOME/.zshrc
-fi
+#if [ ! -f $HOME/.zshrc ]; then
+#    touch $HOME/.zshrc
+#fi
 
 sh $HOME/dev-config/scripts/git_config.sh
-sh $HOME/dev-config/scripts/zsh_config.sh
-
+#sh $HOME/dev-config/scripts/zsh_config.sh
 
 # Install aliases
 python3 $HOME/dev-config/scripts/add_aliases.py
 #source $HOME/.bash_aliases
 #source $HOME/.zshrc
-
 
 cp $HOME/dev-config/files/.editorconfig $HOME/.editorconfig

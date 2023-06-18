@@ -1,12 +1,18 @@
+# Docker
 alias dcbuild="docker compose build --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g)"
 alias dcbuildnc="docker compose build --no-cache --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g)"
 alias dcup="docker compose up -d"
 alias dcd="docker compose down --remove-orphans"
 alias dcrun="dcbuild && dcup"
-alias config-update="cd ~/dev-config && sh config_update.sh && cd ~"
+dcexec() {
+    docker exec -it $1 bash
+}
+
+# Symfony
 alias pbc=" php bin/console"
 alias pcc="php bin/console cache:clear"
-alias bat="batcat"
+
+# PHP
 alias php56="sudo update-alternatives --set php /usr/bin/php5.6 && php -v"
 alias php70="sudo update-alternatives --set php /usr/bin/php7.0 && php -v"
 alias php71="sudo update-alternatives --set php /usr/bin/php7.1 && php -v"
@@ -17,14 +23,13 @@ alias php80="sudo update-alternatives --set php /usr/bin/php8.0 && php -v"
 alias php81="sudo update-alternatives --set php /usr/bin/php8.1 && php -v"
 alias php82="sudo update-alternatives --set php /usr/bin/php8.2 && php -v"
 
+# Config
+alias config-update="cd ~/dev-config && sh config_update.sh && cd ~"
 
-dcexec() {
-    docker exec -it $1 bash
-}
-
+# Tools
+alias bat="batcat"
 nv() {
     nvm install $1 --reinstall-packages-from=node
     nvm alias default $1
     nvm use $1
 }
-

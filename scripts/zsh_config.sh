@@ -17,10 +17,9 @@ if [ ! -f ~/.fonts/MesloLGS\ NF\ Regular.ttf ]; then
     sudo fc-cache -f -v
 fi
 
-# TODO : change default font on tilix & ubuntu terminal with MesloLGS
-
 sed -i 's/^ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc
 cp $HOME/dev-config/files/.p10k.zsh $HOME/.p10k.zsh
+
 source ~/.zshrc
 source ~/.p10k.zsh
 #p10k configure
